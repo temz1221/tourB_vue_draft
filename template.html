@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spectre - Tourbook Vue js filter</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+    <style>
+        
+        .chip_active {
+        background-color:#5755D9;
+        color:white
+        }
+        .url_pre:hover {
+        text-decoration: underline;
+        }
+        .menu-wrapper {
+	position: relative;
+	max-width: 500px;
+	max-height: 100px;
+	margin: 1em auto;
+	border: 1px solid black;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+menu {
+    overflow-x: auto;
+	overflow-y: hidden;
+}
+        </style>
+
+
+
+    <div id="app">
+
+
+            <div class="container" style="width:70%;padding:50px;">
+                    <div class="columns">
+
+                        <!-- First row -->
+                            <div class="column col-7">
+                                    <div class="input-group"><span class="input-group-addon addon-lg">Discover ↶</span>
+                                        <input class="form-input input-lg" type="text" placeholder="Discover" v-model="search">
+                                        <button class="btn btn-primary input-group-btn btn-lg" v-on:click='isOpen = !isOpen'>Filter settings</button>
+                                      </div><BR>
+                                </div>
+                    </div>
+
+                    <div v-show="isOpen">
+                    <!-- Second Row -->
+                      <div class="column col-12">
+                    <!-- Tabs -->
+
+                            <ul class="tab tab-block">
+                                    <li v-for="(active, menu) in menus" class="tab-item" :class="{'tab-item active' : active}">
+                                            <a href="#" v-on:click="setMenu(menu, active)" :class="{'badge' : activeFilters[menu].length}">{{ menu }}</a>
+                                          </li>
+                                          <li class="tab-item"><a href="" v-on:click="clearAllFilters">Clear all</a></li>
+                                  </ul>
+                      </div>
+
+                      <!-- Third row -->
+                      <div class="columns" >
+                          <!-- Sub category tabs -->
+
+                          <div class="menu_wrapper">
+
+                                <menu v-for="(options, filter) in filters" class=""
+                                  v-show="menus[filter]" ref="menu" :key="filter">
+                            
+                                  <li v-if="filter === 'rating'" class="filters__rating">
+
+                            
+                                    <input v-model="filters.rating" class="filters__range" type="range"
+                                      :min="rating.min" v-bind:max="rating.max" step="0.1"/>
+                                  </li>
+                            
+                                  <template v-else>
+                                    <li v-for="(active, option) in options" class="chip c-hand"
+                                    v-bind:class="{ 'chip_active': active } "
+                                      @click="setFilter(filter, option)" >
+                                      {{ option }}
+                                      <a href="#" :class="{'btn btn-clear':active}" aria-label="Close" role="button"></a>
+                                    </li>
+                                       
+                                  </template>
+                                </menu>
+                          </div>
+                              <div class="divider" style="padding-top:10px;padding-bottom:10px;"></div>
+                      </div>
+                    </div>
+
+                      <div class="columns">
+                            <div class="column col-12 col-xs-12" style="padding-top:20px;"><h5>Search results </h5></div>
+                        <div class="column col-4 col-xs-12" v-for="company in list" :key="company.id" style="padding:10px;">
+                                <div class="card" >
+                                  <div class="card-image"><img class="img-responsive" src="img/download.png" alt="company.slogan" style="max-height:250px;width:100%"></div>
+                                  <div class="card-header">
+                                    <button class="btn btn-primary float-right"><i class="icon icon-message"></i></button>
+                                    <div class="card-title h5">{{ company.name }}</div>
+                                    <div class="card-subtitle text-gray">{{ company.slogan }}</div>
+                                  </div>                                  
+                                </p>
+                                  <div class="card-body">An immersive, three-day experience focused on exploring the next generation of technology, mobile and beyond.</div>
+                                  <div class="card-header"><div class="card-subtitle text-gray c-hand url_pre" @click="clearFilter('countries', company.country)">{{ company.country }}</div></div>
+                                </div>
+                              </div>  
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+    </div>
+
+
+</body>
+
+
+<script src="js/vue.min.js"></script>
+<script src="js/script.js"></script>
+
+</html>

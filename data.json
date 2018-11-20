@@ -1,0 +1,232 @@
+[  
+    {  
+       "id":"1",
+       "artist":"Ellie Anderson",
+       "name":"Yellow",
+       "country":"England",
+       "rating":5.5,
+       "color":"#b7b583",
+       "slogan":"best-of-breed initiatives",
+       "logo":"#logo1",
+       "keywords":[  
+          "theatre"
+       ]
+    },
+    {  
+       "id":"2",
+       "artist":"Dubliners",
+       "name":"Whiskey in the jar",
+       "country":"England",
+       "rating":8.6,
+       "color":"#50afb1",
+       "slogan":"bricks-and-clicks e-tailers",
+       "logo":"#logo2",
+       "keywords":[  
+          "customer loyalty"
+       ]
+    },
+    {  
+       "id":"3",
+       "name":"Lebsack and Sons",
+       "country":"Northern Ireland",
+       "rating":9,
+       "color":"#5a8285",
+       "slogan":"vertical e-services",
+       "logo":"#logo3",
+       "keywords":[  
+          "user-centric",
+          "data-warehouse",
+          "emulation"
+       ]
+    },
+    {  
+       "id":"4",
+       "name":"Rosenbaum, Walter and Gutkowski",
+       "country":"Northern Ireland",
+       "rating":7.2,
+       "color":"#6e7039",
+       "slogan":"synergized web-readiness",
+       "logo":"#logo6",
+       "keywords":[  
+          "cross-platform"
+       ]
+    },
+    {  
+       "id":"5",
+       "name":"O'Kon LLC",
+       "country":"Northern Ireland",
+       "rating":9.3,
+       "color":"#227f05",
+       "slogan":"visionary interfaces",
+       "logo":"#logo7",
+       "keywords":[  
+          "internet solutions",
+          "security solutions",
+          "content strategy"
+       ]
+    },
+    {  
+       "id":"6",
+       "name":"Schumm, Spencer and Bailey",
+       "country":"Wales",
+       "rating":6,
+       "color":"#068e82",
+       "slogan":"open-source partnerships",
+       "logo":"#logo23",
+       "keywords":[  
+          "benchmark framework"
+       ]
+    },
+    {  
+       "id":"7",
+       "name":"Beier and Sons",
+       "country":"Northern Ireland",
+       "rating":9.1,
+       "color":"#d98054",
+       "slogan":"deployment channels",
+       "logo":"#logo8",
+       "keywords":[  
+          "migration services",
+          "service-desk",
+          "organic engagement"
+       ]
+    },
+    {  
+       "id":"8",
+       "name":"Dicki-Armstrong",
+       "country":"Scotland",
+       "rating":8.4,
+       "color":"#339b94",
+       "slogan":"engineering B2B",
+       "logo":"#logo9",
+       "keywords":[  
+          "business-focused",
+          "security solutions"
+       ]
+    },
+    {  
+       "id":"11-49fc-cd0",
+       "name":"Bergnaum LLC",
+       "country":"Scotland",
+       "rating":4.9,
+       "color":"#9bd0d3",
+       "slogan":"cross-platform e-services",
+       "logo":"#logo10",
+       "keywords":[  
+          "customer loyalty"
+       ]
+    },
+    {  
+       "id":"c7-4c25-3ac",
+       "name":"Runolfsson Inc",
+       "country":"Scotland",
+       "rating":8.6,
+       "color":"#efe77e",
+       "slogan":"targeted demographics",
+       "logo":"#logo11",
+       "keywords":[  
+          "knowledge base"
+       ]
+    },
+    {  
+       "id":"8c-4968-9ae",
+       "name":"Hermiston LLC",
+       "country":"Northern Ireland",
+       "rating":9.4,
+       "color":"#64c272",
+       "slogan":"bleeding-edge synergies",
+       "logo":"#logo12",
+       "keywords":[  
+          "artificial intelligence",
+          "graphic interfaces",
+          "business-focused"
+       ]
+    },
+    {  
+       "id":"b1-4c29-925",
+       "name":"Mante Inc",
+       "country":"Scotland",
+       "rating":5.1,
+       "color":"#e8a25d",
+       "slogan":"B2C deliverables",
+       "logo":"#logo14",
+       "keywords":[  
+          "focus groups"
+       ]
+    },
+    {  
+       "id":"a6-4da4-c88",
+       "name":"Cassin Inc",
+       "country":"Northern Ireland",
+       "rating":5,
+       "color":"#f7ce1b",
+       "slogan":"redefine web-readiness",
+       "logo":"#logo15",
+       "keywords":[  
+          "artificial intelligence"
+       ]
+    },
+    {  
+       "id":"3b-4f16-d99",
+       "name":"Kilback and Sons",
+       "country":"Wales",
+       "rating":8.9,
+       "color":"#5d8669",
+       "slogan":"real-time metrics",
+       "logo":"#logo16",
+       "keywords":[  
+          "graphic interfaces",
+          "data-warehouse"
+       ]
+    },
+    {  
+       "id":"7f-406f-956",
+       "name":"Hyatt LLC",
+       "country":"Scotland",
+       "rating":7.2,
+       "color":"#a6ed56",
+       "slogan":"network architects",
+       "logo":"#logo17",
+       "keywords":[  
+          "product optimization",
+          "data-warehouse",
+          "service-desk"
+       ]
+    },
+    {  
+       "id":"98-40c2-fad",
+       "name":"Lebsack, Murazik and Stiedemann",
+       "country":"Scotland",
+       "rating":8.1,
+       "color":"#22a4df",
+       "slogan":"world-class platforms",
+       "logo":"#logo18",
+       "keywords":[  
+          "web-enabled"
+       ]
+    },
+    {  
+       "id":"83-46be-94d",
+       "name":"Littel and Sons",
+       "country":"Wales",
+       "rating":8.2,
+       "color":"#538424",
+       "slogan":"web-scale technologies",
+       "logo":"#logo19",
+       "keywords":[  
+          "user-centric"
+       ]
+    },
+    {  
+       "id":"96-4226-a8a",
+       "name":"Block Group",
+       "country":"Scotland",
+       "rating":4.3,
+       "color":"#40698e",
+       "slogan":"customized dataviz",
+       "logo":"#logo20",
+       "keywords":[  
+          "business-focused"
+       ]
+    }
+]
