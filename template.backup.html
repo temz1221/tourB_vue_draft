@@ -15,43 +15,6 @@
 </head>
 <body>
     <style>
-
-      /* f */
-@media(max-width:576px)
-{
-  #f_tab{
-    flex-wrap: nowrap;
-    overflow: scroll;
-  }
-
-  #f_card_columns{
-    flex-wrap: nowrap;
-    overflow: scroll;
-  }
-
-#f_content{
-  display: none;
-}
-
-#f_discover{
-  display: none;
-}
- 
-#f_action{
-  display: none;
-}
-
-#f_centered{
-  justify-content: flex-end;
-}
-}
-
-@media(min-width:576px){
-
- #f_toggle{
-    display: none;
-  }
-}
         
         .chip_active {
         background-color:#00b5ad;
@@ -154,16 +117,14 @@ color:#00b5ad;
     <div id="app">
 
 
-            <div class="container" style="width:80%;padding:30px 10px;">
-              
-                <div class="columns" id="nav" style="padding-bottom:30px;">
+            <div class="container" style="width:80%;padding:30px;">
+                <div class="columns" style="padding-bottom:30px;">
                     <!-- title row -->
-                    <button class="btn btn-link" id="f_toggle"><i class="fa fa-bars" aria-hidden="true"></i></button>
                         <div class="column col-3">
                           <img src="img/logo.jpg" alt="" style="height:65%">
                         </div>
 
-                        <div class="column col-2 col-sm-2" id="f_discover">
+                        <div class="column col-2">
                             <div class="dropdown"><a class="btn btn-link dropdown-toggle reduce2" tabindex="0">Discover <i class="icon icon-caret"></i></a>
                               <ul class="menu">
                                 <li class="menu-item"><a href="#dropdowns">Tours</a></li>
@@ -175,19 +136,19 @@ color:#00b5ad;
                             </div>
                           </div>
 
-                          <div class="column col-3 col-sm-3"></div>
-                          <div class="column col-4  col-sm-4">
-                              <div class="tile tile-centered" id="f_centered">
+                          <div class="column col-3"></div>
+                          <div class="column col-3">
+                              <div class="tile tile-centered">
                                 <div class="tile-icon">
                                   <div class="example-tile-icon" style="padding-right:5px;">
                                     <i class="fa fa-envelope badge"></i>
                                   </div>
                                 </div>
-                                  <div class="tile-content" id="f_content">
+                                  <div class="tile-content">
                                     <div class="tile-title reduce"><span class="reduce">Fortitude Theatre Company</span></div>
                                     <small class="tile-subtitle text-gray">Rachel Smith</small>
                                   </div>
-                                  <div class="tile-action" id="f_action">
+                                  <div class="tile-action">
                                     <button class="btn btn-link">
                                       <i class="fa fa-angle-down"></i>
                                     </button>
@@ -223,14 +184,12 @@ color:#00b5ad;
                       <div class="column col-12" style="border-top:13px solid #F7F8F9;border-left:13px solid #F7F8F9;border-right:13px solid #F7F8F9">
                     <!-- Tabs -->
                     <span class="reduce2 pd" style="padding:10px;">Choose your category</span><BR>
-                            <ul class="tab tab-block" id="f_tab">
+                            <ul class="tab tab-block">
                                     <li v-for="(active, menu) in menus" class="tab-item" :class="{'tab-item active' : active}">
-                                        
-                                            <a href="#" v-on:click="setMenu(menu, active)" :class="{'badge' : activeFilters[menu].length}"><script></script><img src="img/5.png" style="height:40px"> <br><span class="reduce">{{ menu }}</span></a>
+                                            <a href="#" v-on:click="setMenu(menu, active)" :class="{'badge' : activeFilters[menu].length}"><img src="img/dancepng.png" style="height:40px"><br><span class="reduce">{{ menu }}</span></a>
                                           </li>
 
-
-         
+                                          
 
 
                                           <li class="tab-item reduce2"><a href="" v-on:click="clearAllFilters">Clear all</a></li>
@@ -247,9 +206,9 @@ color:#00b5ad;
                                 <menu v-for="(options, filter) in filters" class=""
                                   v-show="menus[filter]" ref="menu" :key="filter">
                             
-                                  <li v-if="filter === 'rating'" class="filters__rating">
+                                  <li v-if="filter === 'Date'" class="filters__rating">
 
-                            
+                            <p>Date component</p>
                                     <input v-model="filters.rating" class="filters__range" type="range"
                                       :min="rating.min" v-bind:max="rating.max" step="0.1"/>
                                   </li>
@@ -269,16 +228,17 @@ color:#00b5ad;
                       </div>
                     </div>
 
-                      <div class="columns" id='f_card_columns'>
+                    
+                      <div class="columns">
                        
                             <div class="column col-12 col-xs-12" style="padding-top:20px;"><h5><span :class="{'present': !search,'absent': search }">Latest results</span><span :class="{'present': search,'absent': !search }">Search results for "{{ search }}"</span></h5></div>
-                        <div class="column col-3 col-xs-12" v-for="company in filteredList" :key="company.id" style="padding:10px;">
+                        <div class="column col-3 col-xs-12" v-for="company in suggestedList" :key="company.id" style="padding:10px;">
                                 <div class="card" >
                                   <div class="card-image"><img class="img-responsive" :src="'https://placeimg.com/320/240/'+company.id" alt="company.slogan" style="max-height:250px;width:100%"></div>
                                   <div class="card-header">
                                     <i class="fa fa-thumbs-up float-right c-hand mouse" style="padding-top:15px;"></i>
                                     <div class="card-title h5">{{ company.name }}</div>
-                                    <div class="card-subtitle text-gray">{{ company.slogan }}{{ company.artforms }}</div>
+                                    <div class="card-subtitle text-gray">{{ company.artform }}</div>
                                   </div>                                  
                                 </p>
                                   <div class="card-body">An immersive, three-day experience focused on exploring the next generation of technology, mobile and beyond.</div>
