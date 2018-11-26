@@ -13,13 +13,39 @@ Vue.component('button-counter', {
   template: '<button v-on:click="$parent.limit+=5">Load {{  $parent.limit}} more.</button>'
 })
 
+//liked cards
+Vue.component('liked', {
+  data: function () {
+    return {
+      count: null
+    }
+  },
+  template: '<button style="position:relative;margin-left:20px" :class="btn input-group-btn btn-lg reduce3"> <i class="fa fa-filter"></i> <span>Liked</span></button>',
+  props: ['']
+})
+
+
+//Lazy-load images to speed up webpage performance
+Vue.use(VueLazyload)
+ 
+// Lazyload options
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  loading: '../img/loading.gif',
+  attempt: 1
+})
+
+
 // Main filter application $parent.companies[0]
 new Vue({
   el: '#app',
+  components: {
+    'img-icon': { template: '<img :src="use" style="height:40px;">', props: ['use'] }
+  },
 
   data() {
     return {
-      image: 0,
+      cou:0,
       suggest:false, //Toggles suggestions
       suggest_thresh: 5,
       suggested: 'wh',
@@ -35,14 +61,14 @@ new Vue({
       rating: { min: 10, max: 0 },
       // filters: { Artforms: {},  Genres: {}, Countries: {} },  //add companies filter
       // menus: { Artforms: false, Genres: false, Countries: true }
-      filters: { Artforms: {},  Genres: {}, Dates: {}, Locations: {}, Capacity: {}, Price: {}, Creativelearning: {}, Countries: {}, Facilities: {}, Staging: {}, Funding: {}, Status: {} },
-      menus: { Artforms: false,  Genres: true, Dates: false, Locations: false, Capacity: false, Price: false, Creativelearning: false, Countries: false, Facilities: false, Staging: false, Funding: false, Status: false }
+      filters: { Artforms: {},  Genres: {}, Dates: {}, Locations: {}, Capacity: {}, Price: {}, Creativelearning: {}, Facilities: {}, Staging: {}, Funding: {}, Status: {} },
+      menus: { Artforms: false,  Genres: true, Dates: false, Locations: false, Capacity: false, Price: false, Creativelearning: false,  Facilities: false, Staging: false, Funding: false, Status: false }
     }
   },
 
   computed: {
 
-  
+ 
     activeMenu() {
       return  Object.keys(this.menus).reduce(($$, set, i) => (this.menus[set]) ? i : $$, -1)
     },
@@ -51,7 +77,8 @@ new Vue({
       let { Artforms, Genres, Dates, Locations, Capacity, Price, Creativelearning, Countries, Facilities, Staging, Funding, Status  } = this.activeFilters
 
       return this.companies.filter(({ country, keywords, artform, dates, location, capacity, price, creativelearning, facilities, staging, fundedby, status })  => {
-        if (Countries.length && !~Countries.indexOf(country)) return false
+        //if (Countries.length && !~Countries.indexOf(country)) return false
+        
         if (!Artforms.length || Artforms.every(cat => ~artform.indexOf(cat)))
         if (!Dates.length || Dates.every(cat => ~dates.indexOf(cat)))
         if (!Locations.length ||Locations.every(cat => ~location.indexOf(cat)))
@@ -88,7 +115,8 @@ new Vue({
       let { Artforms, Genres, Dates, Locations, Capacity, Price, Creativelearning, Countries, Facilities, Staging, Funding, Status } = this.filters
 
       return {
-        Countries: Object.keys(Countries).filter(fl => Countries[fl]),
+        
+        //Countries: Object.keys(Countries).filter(fl => Countries[fl]),
         Genres: Object.keys(Genres).filter(fl => Genres[fl]),
         Dates: Object.keys(Dates).filter(fl => Dates[fl]),
         Locations: Object.keys(Locations).filter(fl => Locations[fl]),
@@ -103,12 +131,8 @@ new Vue({
       }
     }
   },
-
   watch: {
-    add() {
-      image++
-      return image
-          },
+
     activeMenu(index, from) {
       if (index === from) return;
 
@@ -124,7 +148,10 @@ new Vue({
   
 
   methods: {
-
+    getPic() {
+      val++;
+      return val;
+    },
     setFilter(filter, option) {
       if (filter === 'Countries') {
         this.filters[filter][option] = !this.filters[filter][option]
@@ -164,7 +191,7 @@ fetch('data.json')
         this.companies = companies
 
         companies.forEach(({ dates, location, capacity, price, creativelearning, facilities, staging, fundedby, status, country, keywords, artform }) => {
-          this.$set(this.filters.Countries, country, false)
+          //this.$set(this.filters.Countries, country, false)
           this.$set(this.filters.Artforms, artform, false)
 
           

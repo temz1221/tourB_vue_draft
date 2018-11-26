@@ -11,143 +11,10 @@
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
 
 </head>
 <body>
-    <style>
-
-      /* f */
-@media(max-width:576px)
-{
-  #f_tab{
-    flex-wrap: nowrap;
-    overflow: scroll;
-  }
-
-  #f_card_columns{
-    flex-wrap: nowrap;
-    overflow: scroll;
-  }
-
-#f_content{
-  display: none;
-}
-
-#f_discover{
-  display: none;
-}
- 
-#f_action{
-  display: none;
-}
-
-#f_centered{
-  justify-content: flex-end;
-}
-}
-
-@media(min-width:576px){
-
- #f_toggle{
-    display: none;
-  }
-}
-        
-        .chip_active {
-        background-color:#00b5ad;
-        color:white
-        }
-        .tab .tab-item.active a {
-    border-bottom-color: #00b5ad;
-    color:#00b5ad;
-        }
-        .tab .tab-item.active a:hover {
-    border-bottom-color: #00b5ad;
-    color:#00b5ad;
-        }
-        .url_pre:hover {
-        text-decoration: underline;
-        }
-        .menu-wrapper {
-	position: relative;
-	max-width: 500px;
-	max-height: 100px;
-	margin: 1em auto;
-	border: 1px solid black;
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-.reduce {
-  font-size: 12px;
-  font-weight:600;
-}
-.reduce2 {
-  font-size: 14px;
-}
-.reduce3 {
-  font-size: 12px;
-}
-.tour_theme {
-  color:#323232;
-  background-color: white;
-  border:none;
-}
-.tour_theme:hover {
-  background-color: #F7F8F9;
-}
-.active_theme {
-  border:none;
-  color:#323232;
-  background-color: #F7F8F9;
-}
-.active_theme:hover {
-  border:none;
-  background-color: #F7F8F9;
-}
-.btn.active {
-  background-color: #F7F8F9;
-  border:#ccc;
-  box-shadow:none;
-}
-.present {
-  display:inline;
-}
-.absent {
-  display:none;
-}
-.btn.btn-link {
-  color:#323232;
-}
-.tab-item {
-  max-width:120px;
-}
-.btn.btn-link {
-  background-color:white;
-  border:0px;
-  box-shadow:0;
-}
-.btn.btn-lg {
-  font-size: 14px;
-}
-.form-input{
-border:0px;
-}
-.searchwrap{
-  border:1px solid;
-}
-menu {
-  margin:0px;
-  padding-top:20px;
-  padding-bottom:20px;
-}
-.mouse:hover {
-color:#00b5ad;
-}
-.liked {
-  color:#00b5ad;
-}
-        </style>
 
 
 
@@ -209,11 +76,12 @@ color:#00b5ad;
                                             <li class="menu-item"><a href="#dropdowns">Networks</a></li>
                                           </ul>
                                         </div>
-                                          
-
+ 
                                         <input class="form-input input-lg" type="text" placeholder="Discover shows currently available to tour." v-model="search"  style="max-width:600px;"/>
                                         <i class="fa fa-search" style="margin-top:8px;"></i>
                                         <div class="space"></div><button style="position:relative;margin-left:20px" :class="{'btn tour_theme input-group-btn btn-lg reduce3' : !isOpen, 'btn active_theme input-group-btn btn-lg reduce3': isOpen}" v-on:click='isOpen = !isOpen'> <i class="fa fa-filter"></i> <span :class="{'badge' : isOpen}">Add Filter</span></button>
+                                        <div class="space"></div>
+                                        <liked></liked>
                                       </div>
                                 </div>
                     </div>
@@ -222,11 +90,15 @@ color:#00b5ad;
                     <!-- Second Row -->
                       <div class="column col-12" style="border-top:13px solid #F7F8F9;border-left:13px solid #F7F8F9;border-right:13px solid #F7F8F9">
                     <!-- Tabs -->
+     
                     <span class="reduce2 pd" style="padding:10px;">Choose your category</span><BR>
                             <ul class="tab tab-block" id="f_tab">
+                              
                                     <li v-for="(active, menu) in menus" class="tab-item" :class="{'tab-item active' : active}">
                                         
-                                            <a href="#" v-on:click="setMenu(menu, active)" :class="{'badge' : activeFilters[menu].length}"><script></script><img src="img/5.png" style="height:40px"> <br><span class="reduce">{{ menu }}</span></a>
+                                            <a href="#" v-on:click="setMenu(menu, active)" :class="{'badge' : activeFilters[menu].length}">
+                                              
+                                             <img-icon></img-icon> <br><span class="reduce">{{ menu }} </span></a>
                                           </li>
 
 
@@ -260,7 +132,7 @@ color:#00b5ad;
                                       @click="setFilter(filter, option)" >
                                       {{ option }}
                                       <a href="#" :class="{'btn btn-clear':active}" aria-label="Close" role="button"></a>
-                                    </li>
+                                    </liked>
                                        
                                   </template>
                                 </menu>
@@ -270,24 +142,35 @@ color:#00b5ad;
                     </div>
 
                       <div class="columns" id='f_card_columns'>
-                       
+
                             <div class="column col-12 col-xs-12" style="padding-top:20px;"><h5><span :class="{'present': !search,'absent': search }">Latest results</span><span :class="{'present': search,'absent': !search }">Search results for "{{ search }}"</span></h5></div>
-                        <div class="column col-3 col-xs-12" v-for="company in filteredList" :key="company.id" style="padding:10px;">
-                                <div class="card" >
-                                  <div class="card-image"><img class="img-responsive" :src="'https://placeimg.com/320/240/'+company.id" alt="company.slogan" style="max-height:250px;width:100%"></div>
+                          
+                            <div class="column col-3 col-xs-12" v-for="company in filteredList" :key="company.id" style="padding:10px;">
+                                
+                              <div class="card" >
+                                
+                                  <div class="card-image">
+                                      <div v-lazy-container="{ selector: 'img', error: 'xxx.jpg', loading: 'img/loading.gif' }">
+                                          
+                                          <img class="img-responsive" :data-src="'https://placeimg.com/320/240/'+company.id" alt="company.slogan" style="max-height:250px;width:100%"> 
+                                        </div></div>
                                   <div class="card-header">
+                                    
                                     <i class="fa fa-thumbs-up float-right c-hand mouse" style="padding-top:15px;"></i>
                                     <div class="card-title h5">{{ company.name }}</div>
                                     <div class="card-subtitle text-gray">{{ company.slogan }}{{ company.artforms }}</div>
                                   </div>                                  
-                                </p>
+                               
                                   <div class="card-body">An immersive, three-day experience focused on exploring the next generation of technology, mobile and beyond.</div>
                                   <div class="card-header"><div class="card-subtitle text-gray c-hand url_pre" @click="clearFilter('countries', company.country)">{{ company.country }}</div></div>
                                 </div>
+                                
                               </div>  
+
                         
                               <button-counter></button-counter>
                         </div>
+
                       </div>
                     </div>
                   </div>
